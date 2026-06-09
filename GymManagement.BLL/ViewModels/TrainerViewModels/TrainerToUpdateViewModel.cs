@@ -1,24 +1,26 @@
-﻿using System;
+﻿using GymManagement.DAL.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymManagement.BLL.ViewModels.MemberViewModels
+namespace GymManagement.BLL.ViewModels.TrainerViewModels
 {
-    public class MemberToUpdateViewModel
+    public class TrainerToUpdateViewModel
     {
-        public string? Name { get; set; }
-        public string? Photo { get; set; }
+        public string Name { get; set; } = default!;
 
         [Required(ErrorMessage = "Email Is Required")]
         [EmailAddress(ErrorMessage = "Invalid email format")]
+
         public string Email { get; set; } = default!;
 
         [Required(ErrorMessage = "Phone Number Is Required")]
         [Phone(ErrorMessage = "Invalid phone number")]
         [RegularExpression(@"^(010|011|012|015)\d{8}$", ErrorMessage = "Phone number must be a valid Egyptian mobile number")]
+
         public string Phone { get; set; } = default!;
 
         [Required(ErrorMessage = "Building Number Is Required")]
@@ -34,6 +36,8 @@ namespace GymManagement.BLL.ViewModels.MemberViewModels
         [StringLength(150, MinimumLength = 2, ErrorMessage = "Street must be between 2 and 150 characters")]
         [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Street can only contain letters, numbers, and spaces")]
         public string Street { get; set; } = default!;
-        public DateTime UpdatedAt { get; set; } 
+
+        [Required(ErrorMessage = "Specialty is Required")]
+        public Specialty Specialty { get; set; }
     }
 }
